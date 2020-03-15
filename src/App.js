@@ -1,14 +1,21 @@
-import React from 'react';
-import words from './words'
+import React, { useState } from 'react';
+import dictionary from './dictionary'
+import Word from './Word'
 import './App.css';
 
-function App() {
+const App = () => {
+  const [currentWord, setCurrentWord] = useState();
+
+  const onChange = ({ target: { value }}) => {
+    const foundWord = dictionary.find(({ word }) => word === value)
+    setCurrentWord(foundWord)
+  }
+
   return (
     <div className="App">
       <h1>Developer's Dictionary</h1>
-      <input type='text' placeholder='Search...' />
-      <h2>{words[0].word}</h2>
-      <p>{words[0].definition}</p>
+      <input type='text' placeholder='Search...' onChange={onChange} />
+      <Word {...currentWord} />
     </div>
   );
 }
