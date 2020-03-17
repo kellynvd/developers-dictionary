@@ -7,8 +7,12 @@ const App = () => {
   const [currentWord, setCurrentWord] = useState();
 
   const onChange = ({ target: { value }}) => {
-    const foundWord = dictionary.find(({ word }) => word === value)
-    setCurrentWord(foundWord)
+    if (value === '') {
+      return setCurrentWord(null);
+    }
+
+    const foundWord = dictionary.find(({ word }) => word.toLowerCase().search(value.toLowerCase()) !== -1);
+    setCurrentWord(foundWord);
   }
 
   return (
