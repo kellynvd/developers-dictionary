@@ -1,6 +1,6 @@
 import React, { Fragment } from 'react';
 
-const Word = ({ word, meaning }) => {
+const Word = ({ word, meaning, source }) => {
   if (!word) {
     return null;
   }
@@ -9,6 +9,10 @@ const Word = ({ word, meaning }) => {
     <Fragment>
       <h2>{word}</h2>
       <p>{meaning}</p>
+      <p>
+        Source: <a href={source.url} target='blank'>{source.name}</a>
+      </p>
+
     </Fragment>
   );
 }
